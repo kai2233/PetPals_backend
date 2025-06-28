@@ -5,33 +5,35 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
-model User {
-  id                Int      @id @default(autoincrement())
-  pet               Pet[] 
-  username          String   @unique
-  password          String
-  refreshTokenId    RefreshToken?
-  
-}
+// model User {
+//   id                Int      @id @default(autoincrement())
+//   pet               Pet[] 
+//   username          String   @unique
+//   password          String
+//   refreshTokenId    RefreshToken?
+// }
 
-model RefreshToken {
-  id                Int      @id @default(autoincrement())
-  user              User     @relation(fields: [userId], references: [id])
-  userId            Int      @unique
-  token             String   @unique
-}
+// model RefreshToken {
+//   id                Int      @id @default(autoincrement())
+//   user              User     @relation(fields: [userId], references: [id])
+//   userId            Int      @unique
+//   token             String   @unique
+// }
 
 model Pet {
   id            Int       @id @default(autoincrement())
-  master        User      @relation(fields: [userId], references: [id])
-  userId        Int
+  // master        User      @relation(fields: [userId], references: [id])
+  // userId        Int
   dateOfBirth   DateTime  
   name          String
   sex           String
   type          String
   event         Event[]
+  pta           Pet_to_Activity[]
+  healthInfo    Pet_Heath_Info[]
 }
 
 model Event {
@@ -42,11 +44,38 @@ model Event {
   start_time    String
   end_time      String
   type          Event_Type
-  description  String
+  description   String
   detail        String?
+  frequency     Int?
 }
 
 enum Event_Type {
-  A
-  B
+  health_care
+  walk
+  feed
+}
+
+model Pet_to_Activity {
+  id            Int       @id @default(autoincrement())
+  pet           Pet       @relation(fields: [petId], references: [id])
+  petId         Int
+  activity      Pet_Activity
+  frequency     Int
+}
+
+enum Pet_Activity {
+  walking
+  feeding
+  potty
+  playtime
+  daycare
+}
+
+model Pet_Heath_Info {
+  id            Int       @id @default(autoincrement())
+  petId         Int       @unique
+  pet           Pet       @relation(fields: [petId], references: [id])
+  size          Decimal
+  weight        Decimal
+  date          DateTime
 }
