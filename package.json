@@ -4,9 +4,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "cross-env NODE_ENV=development nodemon ./src/index.js",
+    "start:dev": "nodemon ./src/index.js",
     "start:deploy": "node ./src/index.js",
-    "prisma:dev": "cross-env NODE_ENV=development npx prisma migrate dev && npx prisma generate",
+    "prisma:push": "npx prisma db push",
     "prisma:clean": "npx prisma migrate reset --force"
   },
   "keywords": [],
