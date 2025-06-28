@@ -5,11 +5,11 @@ const PORT = 3000;
 const petsRoutes = require('./routes/petsRoutes');
 
 if (process.env.NODE_ENV === 'development') {
-  console.log('development mode');
   config({path: '.env.dev'});
+  console.log('development mode:', process.env.DATABASE_URL);
 } else {
-  console.log('production mode');
   config();
+  console.log('production mode:', process.env.DATABASE_URL);
 }
 
 app.use(express.json()); 
