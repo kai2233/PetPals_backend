@@ -1,9 +1,9 @@
-exports.getAllPets = (req, res) => {
+exports.getAllPets = async (req, res) => {
     const Pets = [{ id: 1, name: "Luna" }, { id: 2, name: "CoCo" }];
     res.json(Pets);
 };
 
-exports.petDetail = (req, res) => {
+exports.petDetail = async (req, res) => {
     let name = 'Luna'
     res.status(201).json({
         status: true,
@@ -14,3 +14,15 @@ exports.petDetail = (req, res) => {
         }
     });
 };
+
+exports.createPet = async (req, res) => {
+
+}
+
+exports.deletePet = async (req, res) => {
+
+}
+
+exports.updatePet = async (req, res) => {
+
+}
