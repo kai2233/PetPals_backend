@@ -4,6 +4,7 @@ const PORT = 3000;
 const petsRoutes = require('./routes/petsRoutes');
 
 app.use(express.json()); 
+app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
   res.send('Hello from PetPals backend!');
