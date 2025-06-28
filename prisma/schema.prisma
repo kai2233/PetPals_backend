@@ -42,9 +42,8 @@ model Event {
   start_time    String
   end_time      String
   type          Event_Type
-  descripation  String
+  description  String
   detail        String?
-
 }
 
 enum Event_Type {
