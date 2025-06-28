@@ -4,8 +4,6 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=production node index.js",
-    "dev": "NODE_ENV=development nodemon src/index.ts",
     "start:dev": "NODE_ENV=development nodemon ./src/index.js",
     "start:deploy": "NODE_ENV=production node ./src/index.js"
   },

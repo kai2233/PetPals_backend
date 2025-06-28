@@ -1,15 +1,15 @@
-const config = require('dotenv');
+const { config } = require('dotenv');
 const express = require('express');
 const app = express();
 const PORT = 3000;
 const petsRoutes = require('./routes/petsRoutes');
 
-if (process.env.NODE_ENV !== 'development') {
+if (process.env.NODE_ENV === 'development') {
   console.log('development mode');
   config({path: '.env.dev'});
 } else {
   console.log('production mode');
-  config({path: '.env'});
+  config();
 }
 
 app.use(express.json()); 
