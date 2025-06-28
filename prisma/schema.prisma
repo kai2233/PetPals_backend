@@ -8,32 +8,42 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-// model User {
-//   id                Int      @id @default(autoincrement())
-//   pet               Pet[] 
-//   username          String   @unique
-//   password          String
-//   refreshTokenId    RefreshToken?
-// }
+model User {
+  id                Int      @id @default(autoincrement())
+  pet               Pet[] 
+  username          String   @unique
+  password          String
+  refreshTokenId    RefreshToken?
+}
 
-// model RefreshToken {
-//   id                Int      @id @default(autoincrement())
-//   user              User     @relation(fields: [userId], references: [id])
-//   userId            Int      @unique
-//   token             String   @unique
-// }
+model RefreshToken {
+  id                Int      @id @default(autoincrement())
+  user              User     @relation(fields: [userId], references: [id])
+  userId            Int      @unique
+  token             String   @unique
+}
 
 model Pet {
   id            Int       @id @default(autoincrement())
-  // master        User      @relation(fields: [userId], references: [id])
-  // userId        Int
+  master        User      @relation(fields: [userId], references: [id])
+  userId        Int
   dateOfBirth   DateTime  
   name          String
-  sex           String
-  type          String
+  sex           Sex_Type
+  type          Pet_Type
   event         Event[]
   pta           Pet_to_Activity[]
   healthInfo    Pet_Heath_Info[]
+}
+
+enum Sex_Type {
+  M
+  F
+}
+
+enum Pet_Type {
+  Cat
+  Dog
 }
 
 model Event {
