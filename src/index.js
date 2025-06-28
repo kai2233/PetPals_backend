@@ -4,13 +4,7 @@ const app = express();
 const PORT = 3000;
 const petsRoutes = require('./routes/petsRoutes');
 
-if (process.env.NODE_ENV === 'development') {
-  config({path: '.env.dev'});
-  console.log('development mode:', process.env.DATABASE_URL);
-} else {
-  config();
-  console.log('production mode:', process.env.DATABASE_URL);
-}
+config();
 
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
