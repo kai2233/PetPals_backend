@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 const petsRoutes = require('./routes/petsRoutes');
-const usersRoutes = require('./routes/users');
+const usersRoutes = require('./routes/userRoutes');
 
 config();
 
